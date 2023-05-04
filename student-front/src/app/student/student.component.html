@@ -1,0 +1,77 @@
+
+    <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-content white-text">
+                <div class="row">
+                    <div class="col s5">
+                        <form  #studentForm="ngForm" (ngSubmit)="onSubmit(studentForm)">
+                            <input type="hidden" name="_id" #_id="ngModel" [ngModel]="studentService.selectedStudent._id">
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input placeholder="Enter full name...." name="name" type="text" #name="ngModel" required [ngModel]="studentService.selectedStudent.name">
+                                <label>Name <label class="red-text">*</label></label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input placeholder="Enter email...." name="email" type="email" #name="ngModel" required [ngModel]="studentService.selectedStudent.email">
+                                <label>Email <label class="red-text">*</label></label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input placeholder="Enter address...." name="address" type="text" #name="ngModel" required [ngModel]="studentService.selectedStudent.address">
+                                <label>Address <label class="red-text">*</label></label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <input placeholder="Enter age...." name="age" type="number" #name="ngModel" required [ngModel]="studentService.selectedStudent.age">
+                                <label>Age <label class="red-text">*</label></label>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="input-field col s12">
+                                <button class="btn btn-custom left" type="button" (click)="resetForm(studentForm)">Reset</button>
+                                <button class="btn btn-custom left" type="submit" [disabled]="!studentForm.valid">Submit</button>
+                              </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col s7">
+                          <table class="responsive-table highlight">
+                              <thead>
+                                <tr>
+                                  <th>name</th>
+                                  <th>email</th>
+                                  <th>address</th>
+                                  <th>age</th>
+                                  <th></th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let student of studentService.students">
+                                  <td>{{student.name}}</td>
+                                  <td>{{student.email}}</td>
+                                  <td>{{student.address}}</td>
+                                  <td>{{student.age}}</td>
+                                  <td>
+                                    <a class="action-btn" (click)="onEdit(student)">
+                                      <i class="material-icons">edit</i>
+                                    </a>
+                                    <a class="action-btn" (click)="onDelete(student._id, studentForm)">
+                                      <i class="material-icons">delete</i>
+                                    </a>
+                                  </td>
+                                </tr>
+                              </tbody>
+                          </table>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+   
